@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Загрузи сайт для Варя</title>
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            max-width: 600px; 
+            margin: 50px auto; 
+            padding: 20px; 
+            text-align: center; 
+        }
+        .upload-area {
+            border: 2px dashed #ccc;
+            padding: 40px;
+            margin: 20px 0;
+            border-radius: 10px;
+        }
+        #qrcode { margin: 20px auto; }
+    </style>
+</head>
+<body>
+    <h1>🎂 Сайт для Варя</h1>
+    <p>Загрузи файлы и получи QR-код для телефона</p>
+    
+    <div class="upload-area">
+        <input type="file" id="fileInput" webkitdirectory directory multiple>
+        <p>Выбери папку со всеми файлами сайта</p>
+    </div>
+
+    <div id="qrcode"></div>
+    <div id="link"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
+    <script>
+        document.getElementById('fileInput').addEventListener('change', function(e) {
+            // После загрузки файлов создаем временную ссылку
+            const tempUrl = "https://твой-сайт.github.io"; // Замени на реальную ссылку
+            QRCode.toCanvas(document.getElementById('qrcode'), tempUrl);
+            document.getElementById('link').innerHTML = `<p>Ссылка: <a href="${tempUrl}">${tempUrl}</a></p>`;
+        });
+    </script>
+</body>
+</html>
